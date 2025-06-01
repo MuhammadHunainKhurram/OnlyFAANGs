@@ -1,0 +1,19 @@
+{
+  "name": "OnlyFAANGs Job Watch",
+  "version": "1.0",
+  "manifest_version": 3,
+  "description": "Notifies you of new jobs scraped by the OnlyFAANGs backend.",
+  "permissions": ["alarms", "notifications", "storage"],
+  "host_permissions": [
+    "http://jobwatch-env.eba-hv6i8xv9.us-east-1.elasticbeanstalk.com/*"
+  ],  
+  "background": {
+    "service_worker": "service-worker.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "48": "icons/48.png"
+    }
+  }
+}

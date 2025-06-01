@@ -1,0 +1,16 @@
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
+
+
+.env
+jobs.db
+__pycache__/
+*.pyc
+*.pyo
+*.sqlite3
+
+extension/config.js
+
