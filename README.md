@@ -101,10 +101,9 @@ Nothing sensitive is committed to GitHub.
 
 ## 🛤 Roadmap
 
-* Lever & Workday modules
+* Greenhouse modules
 * React dashboard with filters & stats
 * CI/CD via GitHub Actions → automatic EB deploy
-* Slack / Discord webhook alerts
 * HTTPS + custom domain (`jobs.<yourdomain>.com`)
 
 ---
