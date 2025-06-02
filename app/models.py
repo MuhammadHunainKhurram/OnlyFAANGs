@@ -4,7 +4,7 @@ from .database import Base
 class Job(Base):
     __tablename__ = "jobs"
 
-    id       = Column(String, primary_key=True)  # unique across all boards
+    id       = Column(String, primary_key=True)
     company  = Column(String, index=True)
     title    = Column(String)
     location = Column(String)

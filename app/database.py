@@ -7,7 +7,7 @@ load_dotenv()  # ⬅️ Loads .env into environment variables
 
 DATABASE_URL = os.getenv(
     "DATABASE_URL",
-    "sqlite:///./jobs.db"  # fallback
+    "sqlite:///./jobs.db"
 )
 
 connect_args = (

@@ -15,7 +15,6 @@ COPY . .
 
 # ➏ Container must expose the port FastAPI listens on
 ENV PORT=8080
-
 EXPOSE 8080
 
 # ➐ Command to start FastAPI

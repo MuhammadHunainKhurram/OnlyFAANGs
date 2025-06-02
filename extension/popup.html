@@ -1,13 +1,19 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
   <meta charset="utf-8" />
-  <title>OnlyFAANGs Jobs</title>
   <link rel="stylesheet" href="popup.css" />
 </head>
 <body>
-  <header>Newest Jobs</header>
+  <header id="hdr">
+    <span>OnlyFAANG</span>
+    <button id="internBtn" title="Show only internships">🎓</button>
+  </header>
+
+  <input id="searchBox" type="text" placeholder="🔍 Search Company" />
+
   <ul id="jobs"></ul>
+
   <script src="config.js"></script>
   <script src="popup.js"></script>
 </body>
