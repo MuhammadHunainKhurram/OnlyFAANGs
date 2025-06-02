@@ -1,12 +1,12 @@
 import requests, uuid
 from datetime import datetime
 from .common import standardise
-from ..config import GREENHOUSE_TEMPLATE, COMPANIES
+from ..config import GREENHOUSE_TEMPLATE, GREENHOUSE_COMPANIES
 
 
 def fetch():
     out = []
-    for slug in COMPANIES:
+    for slug in GREENHOUSE_COMPANIES:
         try:
             r = requests.get(GREENHOUSE_TEMPLATE.format(slug=slug), timeout=10)
             r.raise_for_status()

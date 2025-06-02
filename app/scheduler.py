@@ -32,7 +32,6 @@ def ingest():
     now = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S")
     print(f"[{now}] ingest ran – {added} new rows")
 
-# run every minute
 scheduler = BackgroundScheduler(daemon=True)
 scheduler.add_job(ingest, "interval", minutes=15)
 scheduler.start()
