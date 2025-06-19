@@ -20,7 +20,7 @@ def bootstrap():
     ingest()
 
 @app.get("/jobs/latest")
-def latest(limit: int = 100, db: Session = Depends(db_session)):
+def latest(limit: int = 300, db: Session = Depends(db_session)):
     rows = (
         db.query(Job)
           .order_by(Job.posted.desc())

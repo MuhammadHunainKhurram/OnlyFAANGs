@@ -11,37 +11,14 @@ def _extract_id(raw_id: str | None) -> str | None:
 
 
 def fetch():
-    params = [
-        ("category", "DATA_CENTER_OPERATIONS"),
-        ("category", "DEVELOPER_RELATIONS"),
-        ("category", "HARDWARE_ENGINEERING"),
-        ("category", "INFORMATION_TECHNOLOGY"),
-        ("category", "MANUFACTURING_SUPPLY_CHAIN"),
-        ("category", "NETWORK_ENGINEERING"),
-        ("category", "PRODUCT_MANAGEMENT"),
-        ("category", "PROGRAM_MANAGEMENT"),
-        ("category", "SOFTWARE_ENGINEERING"),
-        ("category", "TECHNICAL_INFRASTRUCTURE_ENGINEERING"),
-        ("category", "TECHNICAL_SOLUTIONS"),
-        ("category", "TECHNICAL_WRITING"),
-        ("category", "USER_EXPERIENCE"),
-
-        ("location", "United States"),
-
-        ("employment_type", "INTERN"),
-        ("employment_type", "FULL_TIME"),
-        ("employment_type", "PART_TIME"),
-        ("employment_type", "TEMPORARY"),
-
-        ("degree", "MASTERS"),
-        ("degree", "BACHELORS"),
-        ("degree", "PURSUING_DEGREE"),
-
-        ("target_level", "INTERN_AND_APPRENTICE"),
-        ("target_level", "EARLY"),
-
-        ("sort_by", "date"),
-    ]
+    params = {
+    "location":  "United States",
+    "page_size": 20,
+    "language_code": "en-US",
+    "target_level": "INTERN_AND_APPRENTICE",
+    "target_level": "EARLY",
+    "order_by": "relevance desc"
+    }
 
     try:
         res = requests.get(GOOGLE_API, params=params, timeout=10)

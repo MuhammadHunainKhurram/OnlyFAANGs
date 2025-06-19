@@ -17,7 +17,7 @@
 |                              |                                                           |
 | ---------------------------- | --------------------------------------------------------- |
 | 🔄 **Autonomous scraping**   | Amazon, Google, and any Greenhouse board list you provide |
-| ⚡ **Realtime API**           | Single endpoint → `/jobs/latest?limit=50`                 |
+| ⚡ **Realtime API**           | Single endpoint → `/jobs/latest?limit=100`                 |
 | 🔔 **Desktop notifications** | Chrome extension polls every 15 min & fires native toasts |
 | 🟥 **“New” badge**           | Jobs younger than 60 min glow red in the popup            |
 | ✅ **“Applied” checkbox**     | Track applications; state lives in `chrome.storage`       |

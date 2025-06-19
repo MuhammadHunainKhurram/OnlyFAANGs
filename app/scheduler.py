@@ -3,9 +3,7 @@ from sqlalchemy.exc import IntegrityError
 from datetime import datetime, timezone
 from .database import SessionLocal
 from .models import Job
-from .scrapers import amazon_fetch, google_fetch, greenhouse_fetch
-
-SCRAPER_FUNCS = [amazon_fetch, google_fetch, greenhouse_fetch]
+from .scrapers import SCRAPER_FUNCS                                
 
 def ingest():
     db = SessionLocal()

@@ -7,24 +7,36 @@ const NEWMAP_KEY  = "newJobsMap";
 const ONE_DAY_MS  = 24 * 60 * 60 * 1000;
 const INTERN_KEYS = ["intern", "internship", "co-op", "apprentice"];
 
-const UL      = document.getElementById("jobs");
-const SEARCH  = document.getElementById("searchBox");
-const BTN     = document.getElementById("internBtn");
+const UL        = document.getElementById("jobs");
+const SEARCH    = document.getElementById("searchBox");
+const INTERN_BTN       = document.getElementById("internBtn");
+const TECH_BTN  = document.getElementById("techBtn");
+
+const INTERN_RE = /\b(intern|internship|co-?op|apprentice)\b/i;
+const TECH_RE   = /\b(software|engineer|engineering|developer|devops|frontend|backend|full[\s-]?stack|site reliability|sre|machine learning|ml|artificial intelligence|ai|data (?:scientist|engineer|analyst)|research (?:scientist|engineer)|product manager|program manager)\b/i;
 
 let showInternsOnly = false;
+let showTechOnly = false;
 let allJobs = [], applied = [], newMap = [];
 
-// toggle handler ──────────────────────────────
-BTN.addEventListener("click", () => {
+
+INTERN_BTN.addEventListener("click", () => {
   showInternsOnly = !showInternsOnly;
-  BTN.classList.toggle("active", showInternsOnly);
+  INTERN_BTN.classList.toggle("active", showInternsOnly);
   render();
 });
 
-// search handler
+TECH_BTN.addEventListener("click", () => {
+  showTechOnly = !showTechOnly;
+  TECH_BTN.classList.toggle("active", showTechOnly);
+  render();
+});
+
+
+
 SEARCH.addEventListener("input", render);
 
-// checkbox handler (unchanged) …
+
 UL.addEventListener("change", async (e) => {
   if (!e.target.matches(".apply-box")) return;
   const id = e.target.closest("li").dataset.id;
@@ -36,7 +48,7 @@ UL.addEventListener("change", async (e) => {
   await chrome.storage.local.set({ [APPLIED_KEY]: applied });
 });
 
-// initial fetch + render ──────────────────────
+
 document.addEventListener("DOMContentLoaded", async () => {
   const store  = await chrome.storage.local.get([APPLIED_KEY, NEWMAP_KEY]);
   applied = store[APPLIED_KEY] || [];
@@ -51,23 +63,22 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 });
 
+
 function render() {
   const term = SEARCH.value.trim().toLowerCase();
 
-  UL.innerHTML = "";   // clear before re-inserting
+  UL.innerHTML = "";
 
   allJobs
     .filter(j => {
       const companyOK = term ? j.company.toLowerCase().includes(term) : true;
-      const internOK  = showInternsOnly
-        ? INTERN_KEYS.some(k => j.title.toLowerCase().includes(k))
-        : true;
-      return companyOK && internOK;
+      const internOK  = showInternsOnly ? INTERN_RE.test(j.title) : true;
+      const techOK    = showTechOnly    ? TECH_RE.test(j.title)    : true;
+      return companyOK && internOK && techOK;
     })
     .forEach(j => {
       const isApplied = applied.includes(j.id);
-      const isNew     = Date.now() - new Date(j.posted).getTime() < ONE_DAY_MS
-                     || (j.id in newMap);
+      const isNew     = Date.now() - new Date(j.posted).getTime() < ONE_DAY_MS || (j.id in newMap);
 
       UL.insertAdjacentHTML("beforeend", `
         <li data-id="${j.id}">
